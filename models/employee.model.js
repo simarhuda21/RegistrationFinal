@@ -8,11 +8,23 @@ var employeeSchema = new mongoose.Schema({
         type: String
     },
     mobile: {
-        type: String
+        type: String,
+        required: "This field is required."
     },
     city: {
-        type: String
-    }
+        type: String,
+        required: "This field is required"
+    },
+    dob:{
+        type:Date,
+        required: "This field is required."
+
+    },
+    gender:{
+        type: String,
+        required: "This field is required"
+    },
+    hobbies:{type: Array}
     });
 
     employeeSchema.path('email').validate((val) => {

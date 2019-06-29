@@ -10,10 +10,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    if(req.body._id == "")
+    // var Emp = {fullName:req.body.fullName,email:req.body.email,mobile:req.body.mobile,city:req.body.city,gender:req.body.gender,hobbies:req.body.hobbies};
+    // Employee.create(Emp,function(err,newData){
+          if(req.body._id == "")
     insertRecord(req, res);
     else
-    updateRecord(req, res);
+     updateRecord(req, res);
 });
 
 function insertRecord(req, res){
@@ -22,6 +24,11 @@ function insertRecord(req, res){
     employee.email = req.body.email;
     employee.mobile = req.body.mobile;
     employee.city = req.body.city;
+    //--------------------------
+    employee.gender = req.body.gender;
+    employee.hobbies =req.body.hobbies;
+    employee.dob = req.body.dob;
+    
     employee.save((err, doc) => {
         if(!err)
             res.redirect("employee/list");
@@ -48,7 +55,8 @@ function updateRecord(req, res) {
                 handleValidationError(err, req.body);
                 res.render("employee/addOrEdit", {
                   viewTitle: "Update Employee",
-                  employee: req.body  
+                   employee: req.body  
+                
                 });
             }
             else
@@ -77,6 +85,15 @@ function handleValidationError(err, body) {
                 break;
             case 'email':
                 body['emailError'] = err.errors[field].message;
+                break;
+            case 'city':
+                body['cityError'] = err.errors[field].message;
+                break;
+            case 'dob':
+                body['dobError'] = err.errors[field].message;
+                break;
+            case 'gender':
+                body['genderError'] = err.errors[field].message;
                 break;
             default:
                 break;
