@@ -8,15 +8,21 @@ router.get("/", (req, res) => {
        viewTitle : "Sign Up"
    }); 
 });
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart({ uploadDir: './imagesPath' });
 
-router.post("/", (req, res) => {
-    // var Emp = {fullName:req.body.fullName,email:req.body.email,mobile:req.body.mobile,city:req.body.city,gender:req.body.gender,hobbies:req.body.hobbies};
-    // Employee.create(Emp,function(err,newData){
-          if(req.body._id == "")
+// router.post("/", (req, res) => {
+//           if(req.body._id == "")
+//     insertRecord(req, res);
+//     else
+//      updateRecord(req, res);
+// });
+router.post('/', multipartMiddleware, function(req, res) {
+    if(req.body._id == "")
     insertRecord(req, res);
     else
-     updateRecord(req, res);
-});
+     updateRecord(req, res);  });
+  
 
 function insertRecord(req, res){
     var employee = new Employee();
@@ -28,6 +34,7 @@ function insertRecord(req, res){
     employee.gender = req.body.gender;
     employee.hobbies =req.body.hobbies;
     employee.dob = req.body.dob;
+    employee.profilepic = req.body.profilepic;
     
     employee.save((err, doc) => {
         if(!err)

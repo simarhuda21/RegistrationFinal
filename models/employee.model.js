@@ -24,7 +24,12 @@ var employeeSchema = new mongoose.Schema({
         type: String,
         required: "This field is required"
     },
-    hobbies:{type: Array}
+    hobbies:{
+        type: Array
+    },
+    profilepic: {
+        type: String
+    }
     });
 
     employeeSchema.path('email').validate((val) => {

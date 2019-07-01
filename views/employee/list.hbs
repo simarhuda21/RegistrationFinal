@@ -9,6 +9,7 @@
            <th>Gender</th>
            <th>Hobbies</th>
            <th>DOB</th>
+           <th>ProfilePic</th>
         </tr>
     </thead>
     <tbody>
@@ -18,10 +19,10 @@
             <td>{{this.email}}</td>
             <td>{{this.mobile}}</td>
             <td>{{this.city}}</td>
-            <!-- -->
             <td>{{this.gender}}</td>
             <td>{{this.hobbies}}</td>
             <td>{{this.dob}}</td>
+            <td>{{this.profilepic}}</td>
             <td>
                 <a href="/employee/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                 <a href="/employee/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
